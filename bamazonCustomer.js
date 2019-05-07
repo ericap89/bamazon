@@ -1,6 +1,7 @@
 // Create Connection to mysql db
 
 const { createConnection }= require('mysql2')
+const { prompt } = require('inquirer')
 
 db = createConnection({
     host: 'localhost',
@@ -28,4 +29,23 @@ db.connect(e => {
         }
         // console.log(data)
     })
+    const getAction = _ => {
+        prompt ({
+            type: 'input',
+            name: 'action',
+            message: 'What is the ID of the product you wish to purchase?'
+        },
+        {
+           type: 'input',
+           name: 'action',
+           message: 'How many units would you like to purchase?'
+        })
+        .then(r => {
+           console.log(r)
+        })
+        .catch(e => console.log(e))
+    }
+   
+    getAction()
 })
+
